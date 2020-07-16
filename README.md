@@ -27,10 +27,15 @@ DO NOT PUSH IT TO A PUBLIC REPO. SINCE WE ARE BAKING ACCESS KEY AND SECRET ACCES
 
 7. exec into the pod and run the below commands. 
     > kubectl exec msktest -it -- /bin/bash
+    
     >/aws# cd /
+    
     >/# sh AutomationMSKTLSClient/TLS_STEPS_AUTOMATION.sh Example-Alias <ARN-OF-PCA> changeit changeit 
+    
     >/# mkdir /tmp/kafka_2.12-2.2.1/
+    
     >/# mv certificate-file client-cert-sign-request kafka.client.keystore.jks kafka.client.truststore.jks new_certificate_file /tmp/kafka_2.12-2.2.1/
+    
     >/# kafka_2.12-2.2.1/bin/kafka-topics.sh --create --zookeeper <ZOOKEPER-CONNECT-STRING> --replication-factor 3 --partitions 1 --topic ExampleTopic
 
     >/# kafka_2.12-2.2.1/bin/kafka-console-producer.sh --broker-list <BOOT-STRAP-BROKER-STRING> --topic ExampleTopic --producer.config kafka_2.12-2.2.1/client.properties
